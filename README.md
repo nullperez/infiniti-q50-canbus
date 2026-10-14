@@ -4413,13 +4413,12 @@ Feel free to let me know of any corrections or additions that you may have found
 | `LOW_BRAKE_FLUID` | Byte 0 [3] | 1 | 1 | 0 |  | documented |
 | `PARKING_BRAKE` | Byte 0 [2] | 1 | 1 | 0 |  | documented |
 | `RUNNING` | Byte 0 [1] | 1 | 1 | 0 |  | candidate |
-| `ODOMETER_RAW` | Bytes 1–3 | 24 | 1 | 0 |  | documented |
+| `ODOMETER_RAW` | Bytes 1–3 | 24 | 1 | 0 | mi | documented |
 
 <details>
 <summary>Signal notes</summary>
 
-- `ODOMETER_RAW`: byte order / unit not established
-
+- `ODOMETER_RAW`: big-endian, hex value of odometer in miles
 </details>
 
 ---
