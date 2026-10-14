@@ -2,10 +2,10 @@
 
 This is an ongoing effort to reverse engineer the CAN bus on my 2019 Infiniti Q50, decoding as many messages and signals as possible. Everything here was worked out empirically: logging traffic, triggering things in the car (doors, lights, pedals, buttons), and watching which bytes change.
 
-To my knowledge, the CAN platform from years 2014-2024 should be similar enough to where you can work off of this data but please confirm on your own vehicle before blindly using the DBC file.
+As far as I am aware, the CAN platform from years 2014-2024 should be similar enough to where you can work off of this data but please confirm on your own vehicle before using the DBC file. Some of it may also be shared with previous year Nissan and Infiniti vehicles, but this should only be used as a reference.
 
 > [!WARNING]
-> **This is unofficial and incomplete.** None of it comes from Nissan/Infiniti documentation. Some signals are educated guesses, some bit widths and scaling factors are approximate, and some of it may simply be wrong. Verify anything before relying on it, and **don't use this data for anything safety-critical.**
+> **This is unofficial and incomplete.** None of it comes from Nissan/Infiniti documentation. Some signals are educated guesses, some bit widths and scaling factors are approximate, and some of it may be wrong. Verify anything before relying on it, and **don't use this data for anything safety-critical.**
 
 ## How to read this
 
@@ -22,7 +22,7 @@ To my knowledge, the CAN platform from years 2014-2024 should be similar enough 
 - Blank cells haven't been decoded yet. They may be unused, or I just haven't figured them out.
 - Enum tables list the values defined for multi-bit signals. Values missing from a table haven't been seen.
 
-Corrections and additions are welcome. If you've confirmed (or disproved) anything here on your own car, please open an issue or PR.
+Feel free to let me know of any corrections or additions that you may have found on your own vehicle.
 
 - [0x002 Steering Angle](#0x002-steering-angle)
 - [0x02A SCM Status](#0x02a-scm-status)
