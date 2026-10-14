@@ -217,7 +217,7 @@ Corrections and additions are welcome. If you've confirmed (or disproved) anythi
 <details>
 <summary>Signal notes</summary>
 
-- `SCM_SYSTEM_ERROR`: bench sweep 2026-10-12 (camera): '! Warning / SCM system error / Visit dealer' + amber master warning; clears with the bit. Other bits of byte 4 and 0xFF/0x00 in bytes 0-3, 5 showed nothing; stopping 0x02A for 10 s showed nothing.
+- don't know what the SCM system is
 
 </details>
 
@@ -1007,9 +1007,8 @@ Corrections and additions are welcome. If you've confirmed (or disproved) anythi
 <summary>Signal notes</summary>
 
 - `WIPER_STATE`: was B0[7:5]; bit 5 is the hood (captures). Real car: bit 6 always 1, bit 7 always 0; bench 2026-10-12: no visible change
-- `HOOD_OPEN`: captures: set 5.6-23.7 s in '5seconds_open_hood_25_close', never elsewhere; no visible meter effect (bench)
 - `OP_STATE`: bench 2026-10-12: no visible change
-- `DRL_ON`: bench 2026-10-12: meter shows the green parking-light telltale (owner)
+- `DRL_ON`: bench 2026-10-12: meter shows the green parking-light telltale
 - `HEADLIGHTS`: bench 2026-10-12: no telltale (lamps follow 0x60D)
 - `FOG_LIGHTS`: README: fog lights. Real-car captures: 1 in P and 0 in R/D/M in all 42 captures with P, so on the car it behaves like a P/N position signal; bench 2026-10-12: no telltale (lamps follow 0x60D)
 - `CHECKSUM`: observed: last byte = (B0+B1+0x72) & 0xFF in idle capture
@@ -1734,7 +1733,7 @@ Corrections and additions are welcome. If you've confirmed (or disproved) anythi
 <summary>Signal notes</summary>
 
 - `YAW_RATE`: captures: signed 12-bit, r -0.990 vs yaw from rear wheel speeds (track 1.55 m assumed, so factor +-5%); + = turning left
-- `WHEEL_ANGLE_CAND`: suggested wheel angle; driving captures: B2-B5 look like noise, no correlation with steering
+- `WHEEL_ANGLE_CAND`: suggested wheel angle; driving captures
 
 </details>
 
@@ -2274,9 +2273,6 @@ Corrections and additions are welcome. If you've confirmed (or disproved) anythi
 
 <details>
 <summary>Signal notes</summary>
-
-- `UNLOCK`: bench 2026-10-12: no visible change
-- `LOCK`: bench 2026-10-12: no visible change
 - `STEERING_LOCK_REG_COMPLETE`: bench 2026-10-12: 'Steering Lock Registration Complete'
 - `KEY_SYSTEM_ERROR`: bench 2026-10-12: 'Key System Error / See Owner's Manual'
 - `KEY_PROMPT`: high bits of byte 5 show priority/suppression when combined; bench 2026-10-12: all 15 codes shown as listed; 2/12/13 show nothing; 15 also turns the gauge backlight off
@@ -4422,7 +4418,6 @@ Corrections and additions are welcome. If you've confirmed (or disproved) anythi
 <details>
 <summary>Signal notes</summary>
 
-- `LOW_BRAKE_FLUID`: latest README bit 3; early note said bit 4
 - `ODOMETER_RAW`: byte order / unit not established
 
 </details>
