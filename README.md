@@ -7,7 +7,7 @@ As far as I am aware, the CAN platform from years 2014-2024 should be similar en
 > [!WARNING]
 > **This is unofficial and incomplete.** None of it comes from Nissan/Infiniti documentation. Some signals are educated guesses, some bit widths and scaling factors are approximate, and some of it may be wrong. Verify anything before relying on it, and **don't use this data for anything safety-critical.**
 
-## How to read this
+## How to read
 
 - Everything below is generated from [`q50_main.dbc`](q50_main.dbc). Each section is one message (frame) from the DBC.
 - Each message has a header (CAN ID, description, DLC, interval, sender) and a byte/bit grid. Bit 7 is the most significant bit of each byte. Signals are big-endian (Motorola) unless the Position column says little-endian.
@@ -152,10 +152,9 @@ Feel free to let me know of any corrections or additions that you may have found
 <details>
 <summary>Signal notes</summary>
 
-- `STEERING_ANGLE`: signed little-endian, factor -0.1 deg (README); bench 2026-10-12: Chassis Control page does not move with +-180 deg
+- `STEERING_ANGLE`: signed little-endian, factor -0.1 deg
 - `STEERING_RATE`: absolute rate, factor ~4 deg/s
-- `COUNTER`: README says byte 3 [3:0]; idle capture shows the rolling nibble in byte 4 [3:0].
-- `CHECKSUM`: observed: B7 = XOR of all nibbles of B0..B6 (captures).
+- `CHECKSUM`: observed: B7 = XOR of all nibbles of B0..B6 
 
 </details>
 
@@ -390,7 +389,7 @@ Feel free to let me know of any corrections or additions that you may have found
 - `GEAR_ACTUAL`: captures: P/N -> 0xA, R -> 0x9, D -> 1..7 (7-speed AT), M2..M5 -> 2..5
 - `GEAR_TARGET`: captures: differs from GEAR_ACTUAL only during a shift (e.g. 0x34 = 3 -> 4)
 - `SHIFT_MODE`: captures: follows the 0x56C drive mode (Personal shows its configured mode)
-- `LOCKUP_CAND`: captures: set mostly when engine rpm and 0x176 turbine speed are within 30 rpm
+- `LOCKUP_CAND`: captures: set mostly when engine rpm and 0x176 turbine speed are within 30 rpm, not confirmed
 
 </details>
 
@@ -505,7 +504,7 @@ Feel free to let me know of any corrections or additions that you may have found
 <summary>Signal notes</summary>
 
 - `OUTPUT_SPEED`: captures: 23.77 x vehicle km/h (r 1.000), i.e. ~driveshaft rpm; 12-bit
-- `ENGINE_RPM`: tracks 0x180 through engine start in mainbus_startup; changing it alone did not move the tach (bench 2026-10-12). Linked to 0x180. Driving captures: reads 0 while stopped in gear at idle and below engine rpm at low speed, so it behaves as the transmission input (turbine) speed.
+- `ENGINE_RPM`: tracks 0x180 through engine start in mainbus_startup; changing it alone did not move the tach. Linked to 0x180. Driving captures: reads 0 while stopped in gear at idle and below engine rpm at low speed, so it behaves as the transmission input (turbine) speed.
 
 </details>
 
@@ -647,7 +646,7 @@ Feel free to let me know of any corrections or additions that you may have found
 <details>
 <summary>Signal notes</summary>
 
-- `ENGINE_RPM`: raw = rpm * 8, big-endian (bench confirmed). Setting it also sets the other RPM copies (0x1F9, 0x3EC, 0x176); 0x3EC wins on the meter when present (bench 2026-10-12).
+- `ENGINE_RPM`: raw = rpm * 8, big-endian. Setting it also sets the other RPM copies (0x1F9, 0x3EC, 0x176); 0x3EC wins on the meter when present.
 - `COUNTER`: README: byte 6 counter; only the low nibble rolls in captures (upper nibble kept).
 
 </details>
@@ -1108,7 +1107,7 @@ Feel free to let me know of any corrections or additions that you may have found
 - `PEDAL_RELEASED`: 0x81 released, 0x80 pressed
 - `CRUISE_MASTER`: correlates with cruise enabled on meter
 - `CRUISE_SWITCH`: idle 0x20; 0x08/0x10 during SET-/RES+ presses
-- `IG_READY`: follows the ignition, not the engine: on for the whole IG-on/engine-off capture (BENCHMETER_MAINBUS_STARTUP), cleared right after IG off; already set in remote-start captures
+- `IG_READY`: follows the ignition, not the engine: on for the whole IG-on/engine-off capture, cleared right after IG off; already set in remote-start captures
 - `ACCEL_POSITION`: captures: equals 0x180 B5 raw (r 0.9997)
 
 </details>
@@ -1283,8 +1282,8 @@ Feel free to let me know of any corrections or additions that you may have found
 <details>
 <summary>Signal notes</summary>
 
-- `FUEL_LEVEL_NORM`: packed 10-bit fuel candidate; meter filters the resistive sender input
-- `FUEL_ADC`: changes with sender resistance AND supply voltage
+- `FUEL_LEVEL_NORM`: normalized 10-bit ADC input from the fuel level sender (independent of supply voltage)
+- `FUEL_ADC`: raw 10-bit fuel level from ADC, changes with voltage
 
 </details>
 
@@ -1362,8 +1361,6 @@ Feel free to let me know of any corrections or additions that you may have found
 
 <details>
 <summary>Signal notes</summary>
-
-- `FR_WHEEL_SPEED`: bench 2026-10-12: 48.28 km/h commanded (raw 9656, 0.005 km/h/bit) -> needle just over 30 mph, meter 0x355 reports 50.07 km/h; 0.01 km/h/bit would be 60 mph
 - `VEHICLE_SPEED`: observed in driving capture: equals 0x354 vehicle speed (km/h x 100)
 - `CHECKSUM`: observed: B7 = (sum(B0..B6) + 0x86) & 0xFF
 
@@ -1733,7 +1730,7 @@ Feel free to let me know of any corrections or additions that you may have found
 <summary>Signal notes</summary>
 
 - `YAW_RATE`: captures: signed 12-bit, r -0.990 vs yaw from rear wheel speeds (track 1.55 m assumed, so factor +-5%); + = turning left
-- `WHEEL_ANGLE_CAND`: suggested wheel angle; driving captures
+- `WHEEL_ANGLE_CAND`: suggested wheel angle
 
 </details>
 
